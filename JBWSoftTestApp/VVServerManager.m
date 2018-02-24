@@ -41,6 +41,24 @@
     
     return manager;
 }
+- (void) postlogOutOnSuccess:(void(^)(void)) success
+                   onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure{
+    NSDictionary *params;
+    
+    [self.manager POST:@"logout/" parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+     
+        if (success){
+           NSLog(@"Logoff compleate");
+        }
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        if (failure){
+            failure(error, 0);
+        }
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+
 
 - (void) postSignupWithUserName:(NSString*) name
                        passWord:(NSString*) passWord
@@ -59,6 +77,9 @@
             success(responseObject);
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
+        if (failure){
+            failure(error, 0);
+        }
         NSLog(@"Error: %@", error);
     }];
 }

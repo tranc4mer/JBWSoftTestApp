@@ -7,24 +7,39 @@
 //
 
 #import "VVBaseViewController.h"
-#import "AbstractActionSheetPicker.h"
+#import "ActionSheetPicker.h"
+#import "VVStoregeManager.h"
+#import "VVLoginViewController.h"
 
 @interface VVBaseViewController () <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>{
     NSArray *locale;
     NSDictionary *outputDictionary;
+    NSDictionary *outputGlobalDictionary;
     NSArray *allKeysFromOutputDictionary;
+    NSArray *allKeysFromOutputGlobalDictionary;
+    NSArray *allKeysBeforeSorting;
+    NSArray *allKeysBeforeSortingGlobal;
     NSString *choosenLocale;
     NSLocale *jpLocale;
+//    BOOL AlertFix;
 };
+
 
 
 - (IBAction)getTextAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *textFieldOutput;
 @property (weak, nonatomic) IBOutlet UIButton *localeButtonOutlet;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *getTextButtonOutlet;
+@property (weak, nonatomic) IBOutlet UITableView *tableViewG;
+
+- (IBAction)sortAction:(UISegmentedControl *)sender;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *sortArraySegmentedOutlet;
 
 - (IBAction)localeButtonAction:(id)sender;
-- (IBAction)statisticSegmentedControl:(id)sender;
+
+- (IBAction)logOff:(UIButton *)sender;
 
 
 
@@ -34,33 +49,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    locale = [[NSArray alloc] init];
-//    choosenLocale = @"he_IL";
-//    NSLocaleLanguageCode
-//    jpLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"ja_JP"];
-    NSString *localeString = @"bg_BG,da_DK,el_GR,en_NG,en_ZA,fi_FI,he_IL,ka_GE,me_ME,nl_NL,pt_PT,sr_Cyrl_RS,tr_TR,zh_TW,ar_JO,en_AU,en_NZ,es_AR,hr_HR,kk_KZ,ro_MD,sr_Latn_RS,uk_UA,ar_SA, bn_BD,de_AT,en_CA,en_PH,es_ES,fr_BE,is_IS,ko_KR,mn_MN,ro_RO,sr_RS,at_AT,de_CH,en_GB,en_SG,es_PE,fr_CA,hu_HU,it_CH,nb_NO,ru_RU,sv_SE,de_DE,en_HK,en_UG,es_VE,fr_CH,hy_AM,it_IT,lt_LT,ne_NP,pl_PL,sk_SK,vi_VN,cs_CZ,el_CY,en_IN,en_US,fa_IR,fr_FR,id_ID,ja_JP,lv_LV,nl_BE,pt_BR,sl_SI,th_TH,zh_CN";
-    locale = [localeString componentsSeparatedByString:@","];
-    self.tableView.hidden = YES;
-    
+   
+    [self initClassObjects];
+  
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 - (IBAction)getTextAction:(id)sender {
     [[VVServerManager sharedManager] getTextWithLocale:choosenLocale
                                              OnSuccess:^(NSDictionary *responce) {
         
         if ([responce objectForKey:@"success"]) {
-            self.tableView.hidden = NO;
+            static dispatch_once_t onceToken;
+            
+                self.tableView.hidden = NO;
+                self.tableViewG.hidden = NO;
+            
+            
             NSString *text = [responce objectForKey:@"data"];
 //            NSLog(@"text is:%@", text);
             self.textFieldOutput.text =  text;
             outputDictionary = [self countCharackters:text];
+            allKeysFromOutputDictionary = [outputDictionary allKeys];
+            [self addTextToGlobalRecordForCurrentUser:outputDictionary];
+            outputGlobalDictionary = [[VVStoregeManager sharedManager] getHistoryRecord];
+            allKeysFromOutputGlobalDictionary = [outputGlobalDictionary allKeys];
+            if (self.sortArraySegmentedOutlet.selectedSegmentIndex == 1) {
+                allKeysBeforeSorting = allKeysFromOutputDictionary;
+               allKeysFromOutputDictionary = [allKeysFromOutputDictionary sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+                allKeysBeforeSortingGlobal = allKeysFromOutputGlobalDictionary;
+                allKeysFromOutputGlobalDictionary = [allKeysFromOutputGlobalDictionary sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+            }
+            
+            NSLog(@"OUTPUT GLOBAL \n\n\n\n%@\n\n\n" , outputGlobalDictionary);
+            //add code for store manager
             [self.tableView reloadData];
+            [self.tableViewG reloadData];
         }
         else{
             self.tableView.hidden = YES;
@@ -99,22 +122,26 @@
             counter = 1;
         }
     }
-    
-//    NSLog(@"dictionary: %@", mutableDictionary);
-    
-
     return mutableDictionary;
     
 }
 
+- (void) addTextToGlobalRecordForCurrentUser:(NSDictionary*) dictionary{
+    [[VVStoregeManager sharedManager] updateHistoryRecordWithDictionary:dictionary];
+}
+
+
+
 - (IBAction)localeButtonAction:(id)sender {
+
     [ActionSheetStringPicker showPickerWithTitle:@"Choose local"
-                                            rows:rows
+                                            rows:locale
                                 initialSelection:0
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            NSLog(@"Picker: %@, Index: %ld, value: %@",
                                                  picker, (long)selectedIndex, selectedValue);
                                            choosenLocale = locale[selectedIndex];
+                                           self.localeButtonOutlet.titleLabel.text = locale[selectedIndex];
                                            
                                            //updateCity
                                        }
@@ -124,32 +151,85 @@
                                           origin:self.view];
 }
 
-- (IBAction)statisticSegmentedControl:(id)sender {
-}
+- (IBAction)logOff:(UIButton *)sender {
+    
+    [[VVServerManager sharedManager] postlogOutOnSuccess:^{
+        
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+        NSLog(@"Error Logoff");
+    }];
+
+    VVLoginViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"VVLoginViewController"];
+    vc.alertReJoinFix = YES;
+    [self presentViewController:vc animated:YES completion:^{
+            [[VVServerManager sharedManager] updateAuthorizationHeader:@""];
+    }];
+     }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    allKeysFromOutputDictionary = [outputDictionary allKeys];
+    if ([tableView isEqual:self.tableView]) {
+//    allKeysFromOutputDictionary = [outputDictionary allKeys];
+    
     NSLog(@"cells %ld", [allKeysFromOutputDictionary count]);
     return [allKeysFromOutputDictionary count];
+    }
+    else if([tableView isEqual:self.tableViewG])
+    {
+
+    NSLog(@"cells %ld", [allKeysFromOutputGlobalDictionary count]);
+    return [allKeysFromOutputGlobalDictionary count];
+    }
+    else
+    {
+    return 1;
+    }
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString* identifier = @"Cell";
-    NSInteger row = indexPath.row;
-    
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+     NSInteger row = indexPath.row;
+    UITableViewCell* cell;
+    if ([tableView isEqual:self.tableView]) {
+        static NSString* identifier = @"Cell";
+        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
     }
-    NSString *currentKey = [allKeysFromOutputDictionary objectAtIndex:row];
-    NSString *valuetimes = [NSString stringWithFormat:@" - %@ Times", [outputDictionary objectForKey:currentKey]];
+    else if([tableView isEqual:self.tableViewG]){
+        NSLog(@"G");
+         static NSString* identifier1 = @"Cell1";
+        cell = [tableView dequeueReusableCellWithIdentifier:identifier1];
+        if(!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier1];
+        }
+    }
+
+    NSString *currentKey;
+    NSString *valuetimes;
+    if ([tableView isEqual:self.tableView]) {
+    currentKey = [allKeysFromOutputDictionary objectAtIndex:row];
+        
+    valuetimes = [NSString stringWithFormat:@" - %@ Times", [outputDictionary objectForKey:currentKey]];
+        }
+    else if([tableView isEqual:self.tableViewG])
+    {
+    currentKey = [allKeysFromOutputGlobalDictionary objectAtIndex:row];
+
+    valuetimes = [NSString stringWithFormat:@" - %@ Times", [outputGlobalDictionary objectForKey:currentKey]];
+    }
+    if ([currentKey isEqualToString:@" "]){
+        currentKey = @"SPACE";
+    }
     cell.textLabel.text = [currentKey stringByAppendingString:valuetimes];
-    
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    NSLog(@"Cell %@", cell.textLabel.text);
     return cell;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 20.f;
+    
+}
+
 #pragma mark - UIPickerView delegate + datasource
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -161,10 +241,43 @@
 }
 
 - (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    
-    
+
     return locale[row];
+}
+#pragma mark - Initialization
+- (void) initClassObjects{
+locale = [[NSArray alloc] init];
+self.tableView.hidden = YES;
+    outputGlobalDictionary = [[VVStoregeManager sharedManager] getHistoryRecord];
+    allKeysFromOutputGlobalDictionary = [outputGlobalDictionary allKeys];
+    if (allKeysFromOutputGlobalDictionary.count < 1) {
+        self.tableViewG.hidden = YES;
+    }
+self.getTextButtonOutlet.layer.cornerRadius = 10;
+self.localeButtonOutlet.titleLabel.textAlignment = NSTextAlignmentCenter;
+NSDictionary *testDict = [[VVStoregeManager sharedManager] getHistoryRecord];
+NSLog(@"History Record %@", testDict);
+NSString *localeString = @"bg_BG,da_DK,el_GR,en_NG,en_ZA,fi_FI,he_IL,ka_GE,me_ME,nl_NL,pt_PT,sr_Cyrl_RS,tr_TR,zh_TW,ar_JO,en_AU,en_NZ,es_AR,hr_HR,kk_KZ,ro_MD,sr_Latn_RS,uk_UA,ar_SA, bn_BD,de_AT,en_CA,en_PH,es_ES,fr_BE,is_IS,ko_KR,mn_MN,ro_RO,sr_RS,at_AT,de_CH,en_GB,en_SG,es_PE,fr_CA,hu_HU,it_CH,nb_NO,ru_RU,sv_SE,de_DE,en_HK,en_UG,es_VE,fr_CH,hy_AM,it_IT,lt_LT,ne_NP,pl_PL,sk_SK,vi_VN,cs_CZ,el_CY,en_IN,en_US,fa_IR,fr_FR,id_ID,ja_JP,lv_LV,nl_BE,pt_BR,sl_SI,th_TH,zh_CN";
+locale = [localeString componentsSeparatedByString:@","];
+choosenLocale = locale[arc4random() % locale.count-1];
+
+    
 }
 
 
+- (IBAction)sortAction:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 1) {
+        allKeysBeforeSorting = allKeysFromOutputDictionary;
+        allKeysBeforeSortingGlobal = allKeysFromOutputGlobalDictionary;
+        allKeysFromOutputGlobalDictionary = [allKeysFromOutputGlobalDictionary sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        allKeysFromOutputDictionary = [allKeysFromOutputDictionary sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        
+    }
+    else if(sender.selectedSegmentIndex == 0){
+        allKeysFromOutputDictionary = allKeysBeforeSorting;
+        allKeysFromOutputGlobalDictionary = allKeysBeforeSortingGlobal;
+    }
+    [self.tableViewG reloadData];
+    [self.tableView reloadData];
+}
 @end

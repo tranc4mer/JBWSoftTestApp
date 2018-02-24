@@ -10,7 +10,11 @@
 
 @interface VVLoginViewController : UIViewController
 
+@property (assign, nonatomic) BOOL alertReJoinFix;
+
 - (void)updateAuthorizationHeader:(NSString *)token;
+
+
 
 
 @end

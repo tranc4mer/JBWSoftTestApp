@@ -20,7 +20,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"initial"]){
+    NSDictionary *records = [[NSMutableDictionary alloc] init];
+    NSData *recordData = [NSKeyedArchiver archivedDataWithRootObject:records];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"initial"];
+    [[NSUserDefaults standardUserDefaults] setObject:recordData forKey:@"records"];
+    }
+    
+    
+    NSData *testData = [[NSUserDefaults standardUserDefaults] objectForKey:@"records"];
+    NSDictionary *myDictionary = (NSDictionary*) [NSKeyedUnarchiver unarchiveObjectWithData:testData];
+    NSLog(@"AppDelegate Dictioraty \n\n\n %@n\n\n\n", myDictionary );
     return YES;
 }
 

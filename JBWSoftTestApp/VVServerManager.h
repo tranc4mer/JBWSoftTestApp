@@ -25,6 +25,9 @@
                    onSuccess:(void(^)(NSDictionary *responce)) success
                    onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
 
+- (void) postlogOutOnSuccess:(void(^)(void)) success
+                   onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
+
 - (void)updateAuthorizationHeader:(NSString *)token;
 
 - (void) getTextWithLocale:(NSString*) locale

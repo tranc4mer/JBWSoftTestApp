@@ -7,23 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DF3867C3110A6E02B15EE2F /* libPods-JBWSoftTestApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3771C2B7932286F895312CE7 /* libPods-JBWSoftTestApp.a */; };
+		C27947C7203B257D00C33828 /* VVStoregeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C27947C6203B257D00C33828 /* VVStoregeManager.m */; };
 		C2ADB87920307D4B006BC338 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB87820307D4B006BC338 /* AppDelegate.m */; };
 		C2ADB87C20307D4B006BC338 /* VVLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB87B20307D4B006BC338 /* VVLoginViewController.m */; };
 		C2ADB88120307D4B006BC338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2ADB88020307D4B006BC338 /* Assets.xcassets */; };
 		C2ADB88420307D4B006BC338 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2ADB88220307D4B006BC338 /* LaunchScreen.storyboard */; };
 		C2ADB88720307D4B006BC338 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB88620307D4B006BC338 /* main.m */; };
 		C2ADB88F20308EF3006BC338 /* VVServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB88E20308EF3006BC338 /* VVServerManager.m */; };
-		C2ADB89F20309721006BC338 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB89620309721006BC338 /* AFURLResponseSerialization.m */; };
-		C2ADB8A020309721006BC338 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB89720309721006BC338 /* AFHTTPSessionManager.m */; };
-		C2ADB8A120309721006BC338 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB89920309721006BC338 /* AFURLSessionManager.m */; };
-		C2ADB8A220309721006BC338 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB89A20309721006BC338 /* AFURLRequestSerialization.m */; };
-		C2ADB8A320309721006BC338 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB89C20309721006BC338 /* AFNetworkReachabilityManager.m */; };
-		C2ADB8A420309721006BC338 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB89D20309721006BC338 /* AFSecurityPolicy.m */; };
 		C2ADB8A72033B13C006BC338 /* VVBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2ADB8A62033B13C006BC338 /* VVBaseViewController.m */; };
 		C2ADB8AA2033BB9D006BC338 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2ADB8A82033BB9D006BC338 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3771C2B7932286F895312CE7 /* libPods-JBWSoftTestApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JBWSoftTestApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C27947C5203B257D00C33828 /* VVStoregeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVStoregeManager.h; sourceTree = "<group>"; };
+		C27947C6203B257D00C33828 /* VVStoregeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVStoregeManager.m; sourceTree = "<group>"; };
 		C2ADB87420307D4B006BC338 /* JBWSoftTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBWSoftTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2ADB87720307D4B006BC338 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2ADB87820307D4B006BC338 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -35,22 +34,11 @@
 		C2ADB88620307D4B006BC338 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C2ADB88D20308EF3006BC338 /* VVServerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVServerManager.h; sourceTree = "<group>"; };
 		C2ADB88E20308EF3006BC338 /* VVServerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVServerManager.m; sourceTree = "<group>"; };
-		C2ADB89220309721006BC338 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
-		C2ADB89320309721006BC338 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		C2ADB89420309721006BC338 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
-		C2ADB89520309721006BC338 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
-		C2ADB89620309721006BC338 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
-		C2ADB89720309721006BC338 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
-		C2ADB89820309721006BC338 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
-		C2ADB89920309721006BC338 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		C2ADB89A20309721006BC338 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
-		C2ADB89B20309721006BC338 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		C2ADB89C20309721006BC338 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		C2ADB89D20309721006BC338 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
-		C2ADB89E20309721006BC338 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		C2ADB8A52033B13C006BC338 /* VVBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VVBaseViewController.h; sourceTree = "<group>"; };
 		C2ADB8A62033B13C006BC338 /* VVBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VVBaseViewController.m; sourceTree = "<group>"; };
 		C2ADB8A92033BB9D006BC338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EFA17691BEA4DC87A29FA902 /* Pods-JBWSoftTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JBWSoftTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JBWSoftTestApp/Pods-JBWSoftTestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F230E885F90F8E17B31461AA /* Pods-JBWSoftTestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JBWSoftTestApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-JBWSoftTestApp/Pods-JBWSoftTestApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,17 +46,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DF3867C3110A6E02B15EE2F /* libPods-JBWSoftTestApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23F8AD2547C033C2C96F1EA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3771C2B7932286F895312CE7 /* libPods-JBWSoftTestApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D28A76393F84617E6134212 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EFA17691BEA4DC87A29FA902 /* Pods-JBWSoftTestApp.debug.xcconfig */,
+				F230E885F90F8E17B31461AA /* Pods-JBWSoftTestApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C2ADB86B20307D4B006BC338 = {
 			isa = PBXGroup;
 			children = (
 				C2ADB87620307D4B006BC338 /* JBWSoftTestApp */,
 				C2ADB87520307D4B006BC338 /* Products */,
+				2D28A76393F84617E6134212 /* Pods */,
+				23F8AD2547C033C2C96F1EA8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +100,8 @@
 				C2ADB88E20308EF3006BC338 /* VVServerManager.m */,
 				C2ADB8A52033B13C006BC338 /* VVBaseViewController.h */,
 				C2ADB8A62033B13C006BC338 /* VVBaseViewController.m */,
+				C27947C5203B257D00C33828 /* VVStoregeManager.h */,
+				C27947C6203B257D00C33828 /* VVStoregeManager.m */,
 				C2ADB88020307D4B006BC338 /* Assets.xcassets */,
 				C2ADB8A82033BB9D006BC338 /* Main.storyboard */,
 				C2ADB88220307D4B006BC338 /* LaunchScreen.storyboard */,
@@ -104,29 +114,8 @@
 		C2ADB89020309686006BC338 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				C2ADB89120309721006BC338 /* AFNetworking */,
 			);
 			path = Libs;
-			sourceTree = "<group>";
-		};
-		C2ADB89120309721006BC338 /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				C2ADB89220309721006BC338 /* AFSecurityPolicy.h */,
-				C2ADB89320309721006BC338 /* AFNetworkReachabilityManager.h */,
-				C2ADB89420309721006BC338 /* AFURLSessionManager.h */,
-				C2ADB89520309721006BC338 /* AFURLRequestSerialization.h */,
-				C2ADB89620309721006BC338 /* AFURLResponseSerialization.m */,
-				C2ADB89720309721006BC338 /* AFHTTPSessionManager.m */,
-				C2ADB89820309721006BC338 /* AFURLResponseSerialization.h */,
-				C2ADB89920309721006BC338 /* AFURLSessionManager.m */,
-				C2ADB89A20309721006BC338 /* AFURLRequestSerialization.m */,
-				C2ADB89B20309721006BC338 /* AFNetworking.h */,
-				C2ADB89C20309721006BC338 /* AFNetworkReachabilityManager.m */,
-				C2ADB89D20309721006BC338 /* AFSecurityPolicy.m */,
-				C2ADB89E20309721006BC338 /* AFHTTPSessionManager.h */,
-			);
-			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,9 +125,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2ADB88A20307D4B006BC338 /* Build configuration list for PBXNativeTarget "JBWSoftTestApp" */;
 			buildPhases = (
+				2A33A548E4E6A1602405B371 /* [CP] Check Pods Manifest.lock */,
 				C2ADB87020307D4B006BC338 /* Sources */,
 				C2ADB87120307D4B006BC338 /* Frameworks */,
 				C2ADB87220307D4B006BC338 /* Resources */,
+				D8AB2131E98DA346858CF675 /* [CP] Embed Pods Frameworks */,
+				FE0AEE1CAD58E98631549DAC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,22 +187,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A33A548E4E6A1602405B371 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JBWSoftTestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8AB2131E98DA346858CF675 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JBWSoftTestApp/Pods-JBWSoftTestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE0AEE1CAD58E98631549DAC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JBWSoftTestApp/Pods-JBWSoftTestApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C2ADB87020307D4B006BC338 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C2ADB87C20307D4B006BC338 /* VVLoginViewController.m in Sources */,
-				C2ADB8A320309721006BC338 /* AFNetworkReachabilityManager.m in Sources */,
+				C27947C7203B257D00C33828 /* VVStoregeManager.m in Sources */,
 				C2ADB88720307D4B006BC338 /* main.m in Sources */,
 				C2ADB88F20308EF3006BC338 /* VVServerManager.m in Sources */,
-				C2ADB8A120309721006BC338 /* AFURLSessionManager.m in Sources */,
 				C2ADB8A72033B13C006BC338 /* VVBaseViewController.m in Sources */,
-				C2ADB8A020309721006BC338 /* AFHTTPSessionManager.m in Sources */,
-				C2ADB8A420309721006BC338 /* AFSecurityPolicy.m in Sources */,
 				C2ADB87920307D4B006BC338 /* AppDelegate.m in Sources */,
-				C2ADB89F20309721006BC338 /* AFURLResponseSerialization.m in Sources */,
-				C2ADB8A220309721006BC338 /* AFURLRequestSerialization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +380,7 @@
 		};
 		C2ADB88B20307D4B006BC338 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFA17691BEA4DC87A29FA902 /* Pods-JBWSoftTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -356,6 +395,7 @@
 		};
 		C2ADB88C20307D4B006BC338 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F230E885F90F8E17B31461AA /* Pods-JBWSoftTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
